@@ -149,6 +149,7 @@ export const EmpPage = () => {
       <h1 className="home__heading">Blue Page SyncUp </h1>
       
        <Search
+        className="filter"
         size="lg"
         placeholder="Filter by Employee Name"
         labelText="Search"
@@ -162,8 +163,7 @@ export const EmpPage = () => {
         }}
       />
       
-       <div className="home__label filter-panel">
-       </div>
+    
 
        <Datagrid datagridState={{ ...datagridState }} />
     </div>
