@@ -1,86 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  SideNavMenuItem,
-  HeaderName,
-  Header,
   HeaderContainer,
-  HeaderNavigation,
+  Header,
+  SkipToContent,
   HeaderMenuButton,
+  HeaderName,
+  HeaderNavigation,
   HeaderMenuItem,
+  HeaderMenu,
   HeaderGlobalBar,
   HeaderGlobalAction,
-  SkipToContent,
   SideNav,
   SideNavItems,
+  SideNavMenu,
+  SideNavMenuItem,
+  SideNavLink,
   HeaderSideNavItems,
 } from '@carbon/react';
-import { Home, Settings, Information, Notification, UserAvatar, Switcher } from '@carbon/icons-react';
- import { Link } from 'react-router-dom';
+import { UserAvatar, Switcher, Search, Notification, Fade } from '@carbon/icons-react';
+import { Link } from 'react-router-dom';
 
-const CarbonHeader = () => 
-(
-  <HeaderContainer
-    render={({ isSideNavExpanded, onClickSideNavExpand }) => (
-      <Header aria-label="Carbon Tutorial">
-        <SkipToContent />
-        <HeaderMenuButton
-          aria-label="Open menu"
-          onClick={onClickSideNavExpand}
-          isActive={isSideNavExpanded}
-        />
-        <HeaderName  prefix="IBM">
-           Headcount
-        </HeaderName>
-        
-        <SideNav  aria-label="Side navigation" className="custom-sidenav">
-    
-    <SideNavItems className="nav-list">
- 
-    <SideNavMenuItem
-      as={Link} to="/home"
-        style={{ paddingLeft: '16px' }} 
-      >
-        Home
-      </SideNavMenuItem>
+const CarbonHeader = () => {
+  const [isSideNavExpanded, setIsSideNavExpanded] = useState(false);
 
-         <SideNavMenuItem
-         as={Link} to="/emppage"
-        style={{ paddingLeft: '16px' }} 
-      >
-        BluePage SyncUp
-      </SideNavMenuItem>
-
-
-      <SideNavMenuItem
-       as={Link} to="/dashboard"
-        
-        style={{ paddingLeft: '16px' }} 
-      >
-        Dashboard
-      </SideNavMenuItem>
-
-      
-    </SideNavItems>
-  </SideNav>
-        <HeaderGlobalBar>
-  
-  <HeaderGlobalAction aria-label=" Logout" tooltipAlignment="center"  href="/">
-    <UserAvatar size={25} />
-  </HeaderGlobalAction>
- 
+  const toggleSideNav = () => {
+    setIsSideNavExpanded(!isSideNavExpanded);
+  };
 
   
-</HeaderGlobalBar>
-      </Header>
-    )}
-  />
-  
-  
-);
+  return (
+    <HeaderContainer
+      render={({ onClickSideNavExpand }) => (
+        <Header aria-label="IBM Platform Name">
+          <SkipToContent />
+          <HeaderMenuButton
+            aria-label={isSideNavExpanded ? 'Close menu' : 'Open menu'}
+            onClick={() => {
+              onClickSideNavExpand();
+              toggleSideNav();
+            }}
+            isActive={isSideNavExpanded}
+            aria-expanded={isSideNavExpanded}
+          />
+          <HeaderName  prefix="IBM">
+            Headcount
+          </HeaderName>
+          
+          <HeaderGlobalBar>
+          
+            <HeaderGlobalAction
+              aria-label="App Switcher"
+              
+              tooltipAlignment="end"
+              href="/"
+            >
+              <Switcher size={20} />
+            </HeaderGlobalAction>
+          </HeaderGlobalBar>
+          <SideNav
+            aria-label="Side navigation"
+            expanded={isSideNavExpanded} 
+            onOverlayClick={onClickSideNavExpand}
+             onSideNavBlur={onClickSideNavExpand}
+            isRail
+          >
+            <SideNavItems>
+             
+              <SideNavLink renderIcon={Fade} as={Link} to="/home">
+                Home
+              </SideNavLink>
+              <SideNavLink renderIcon={Fade} as={Link} to="/emppage">
+                BluePage
+              </SideNavLink>
+              <SideNavLink renderIcon={Fade} as={Link} to="/dashboard">
+              Dashboard
+              </SideNavLink>
+
+            </SideNavItems>
+          </SideNav>
+        </Header>
+      )}
+    />
+  );
+};
 
 export default CarbonHeader;
-
-
-
-
-
