@@ -1,8 +1,8 @@
 @use '@carbon/react/scss/spacing' as *;
 
 .EmpPageWrap{
-  padding-left: 18vw;
-  padding-top:10vh ;
+  padding-left: $spacing-10;
+  padding-top:$spacing-10;
 
 }
 .repo-page__r1 {
