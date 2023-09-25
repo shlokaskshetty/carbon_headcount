@@ -29,13 +29,6 @@ const defaultHeader = [
   {
     Header: ' Dept Name',
     accessor: 'Dept Name',
-    inlineEdit: {
-      type: 'text',
-       validator: (n) => n.length >= 40,
-       inputProps: {
-        invalidText: 'Invalid text, character count must be less than 40',
-      },
-    },
   },
   {
     Header: 'IsManager',
