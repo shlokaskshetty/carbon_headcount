@@ -10,7 +10,7 @@ import {
   SideNav,
   SideNavItems,
   SideNavLink,
-  Theme, // Import the Theme component
+  Theme,  
 } from '@carbon/react';
 import { Switcher, Fade } from '@carbon/icons-react';
 import { Link } from 'react-router-dom';
@@ -23,7 +23,7 @@ const CarbonHeader = () => {
   };
 
   return (
-    <Theme theme="g100"> {/* Apply the "g100" theme to the entire content of the component */}
+    <Theme theme="g100"> 
       <HeaderContainer
         render={({ onClickSideNavExpand }) => (
           <Header aria-label="IBM Platform Name">
