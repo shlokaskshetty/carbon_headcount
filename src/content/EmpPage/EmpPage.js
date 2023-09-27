@@ -10,8 +10,9 @@ import { pkg } from '@carbon/ibm-products/lib/settings';
  import axios from 'axios';
 import './emppage.scss';
  import Search from '@carbon/react/lib/components/Search';
-// import Search from './Search';
+ import {  Button } from 'carbon-components-react';
 
+ 
 const defaultHeader = [
   {
     Header: 'EmployeeSerial',
@@ -135,7 +136,16 @@ export const EmpPage = () => {
      setFilteredData(filteredEmployees);
   };
 
- 
+  const handleSaveEdits = () => {
+    axios
+      .post('http://localhost:5000/api/updateEmployees', { employees: data })
+      .then((response) => {
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        console.error('Error updating employees:', error);
+      });
+  };
 
   return (
     <div className="EmpPageWrap">
@@ -144,6 +154,7 @@ export const EmpPage = () => {
        <Search
         className="filter"
         size="lg"
+        style={{ width: '100vh' }} 
         placeholder="Filter by Employee Name"
         labelText="Search"
         closeButtonLabelText="Clear search input"
@@ -157,9 +168,14 @@ export const EmpPage = () => {
       />
       
     
+<div>
+<Datagrid datagridState={{ ...datagridState }} />
 
-       <Datagrid datagridState={{ ...datagridState }} />
+</div>
+       <Button onClick={handleSaveEdits}>Save Edits</Button>
+
     </div>
+    
   );
 };
 
