@@ -12,8 +12,10 @@ import {
   SideNavLink,
   Theme,  
 } from '@carbon/react';
-import { Switcher, Fade } from '@carbon/icons-react';
+import { Switcher, Fade, Home } from '@carbon/icons-react';
 import { Link } from 'react-router-dom';
+import { Table } from 'carbon-components-react';
+import { UserAvatar } from '@carbon/icons-react';
 
 const CarbonHeader = () => {
   const [isSideNavExpanded, setIsSideNavExpanded] = useState(false);
@@ -49,20 +51,22 @@ const CarbonHeader = () => {
               onSideNavBlur={onClickSideNavExpand}
               isRail
             >
-              <SideNavItems>
-                <SideNavLink renderIcon={Fade} as={Link} to="/home">
-                  Home
-                </SideNavLink>
-                <SideNavLink renderIcon={Fade} as={Link} to="/emppage">
-                  BluePage
-                </SideNavLink>
-                <SideNavLink renderIcon={Fade} as={Link} to="/dashboard">
-                  Dashboard
-                </SideNavLink>
-                <SideNavLink renderIcon={Fade} as={Link} to="/">
-                  Logout
-                </SideNavLink>
-              </SideNavItems>
+            <SideNavItems>
+  <SideNavLink renderIcon={Home} as={Link} to="/home">
+    Home
+  </SideNavLink>
+  <SideNavLink renderIcon={Fade} as={Link} to="/emppage">
+    BluePage
+  </SideNavLink>
+  <SideNavLink renderIcon={Switcher} as={Link} to="/dashboard">
+    Dashboard
+  </SideNavLink>
+  <SideNavLink renderIcon={UserAvatar} as={Link} to="/">
+    Logout
+  </SideNavLink>
+</SideNavItems>
+
+    
             </SideNav>
           </Header>
         )}
@@ -72,4 +76,3 @@ const CarbonHeader = () => {
 };
 
 export default CarbonHeader;
-
