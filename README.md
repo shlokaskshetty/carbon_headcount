@@ -16,6 +16,7 @@ In config.js: Replace database name with your own pre-exisiting database name: c
 <pre>
 npm install @carbon/react
 npm install express-rate-limit
+npm install dotenv
 </pre>
 
 
