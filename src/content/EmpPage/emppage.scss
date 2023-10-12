@@ -1,0 +1,21 @@
+@use '@carbon/react/scss/spacing' as *;
+
+.EmpPageWrap{
+  padding-left: $spacing-10;
+  padding-top:$spacing-10;
+
+}
+.repo-page__r1 {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+}
+ 
+.home__heading{
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+}
+
+.filter{
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+} 
