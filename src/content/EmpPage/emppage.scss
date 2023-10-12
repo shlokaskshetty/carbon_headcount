@@ -1,7 +1,8 @@
 @use '@carbon/react/scss/spacing' as *;
+@use '@carbon/colors';
 
 .EmpPageWrap{
-  padding-left: $spacing-10;
+  padding-left: $spacing-09;
   padding-top:$spacing-10;
 
 }
@@ -13,9 +14,23 @@
 .home__heading{
   padding-top: $spacing-06;
   padding-bottom: $spacing-06;
+  padding-left: $spacing-06;
 }
 
 .filter{
   padding-top: $spacing-06;
   padding-bottom: $spacing-06;
 } 
+
+
+
+
+.filter__banner{
+  background-color: #f4f4f4 ;
+    padding-bottom: $spacing-06;
+
+}
+
+ .table-container {
+  width: 100%; 
+}
