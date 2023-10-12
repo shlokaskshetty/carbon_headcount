@@ -116,7 +116,7 @@ export const EmpPage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/1234')//testing HERE getEmployees 
+      .get('http://localhost:5000/api/getEmployees')//testing HERE getEmployees 
       .then((response) => {
         setData(response.data);
       })
