@@ -11,8 +11,8 @@ npm install @carbon/react
 ## Step 3: Set up the backend server
 -> Add Backend/server.js to the root folder<br>
 -> In the server.js file make the following changes:<br>
-In config.js: Replace username, password of CouchDB database with your own, in the format: http://username:password@localhost:5984 <br>
-In config.js: Replace database name with your own pre-exisiting database name: const dbName = 'database-name'; <br>
+In config.js and server.js: Replace username, password of CouchDB database with your own, in the format: http://username:password@localhost:5984 <br>
+In config.js and server.js: Replace database name with your own pre-exisiting database name: const dbName = 'database-name'; <br>
 <pre>
 npm install @carbon/react
 npm install express-rate-limit
