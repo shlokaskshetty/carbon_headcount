@@ -6,10 +6,10 @@
   padding-top:$spacing-10;
 
 }
-// .repo-page__r1 {
-//   padding-top: $spacing-05;
-//   padding-bottom: $spacing-05;
-// }
+.repo-page__r1 {
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+}
  
 .home__heading{
   padding-top: $spacing-06;
@@ -17,28 +17,27 @@
   padding-left: $spacing-06;
 }
 
-// .filter{
-//   padding-top: $spacing-06;
-//   padding-bottom: $spacing-06;
-// } 
+.filter{
+  padding-top: $spacing-06;
+  padding-bottom: $spacing-06;
+} 
 
-
-
-
-// .filter__banner{
-//   background-color: #f4f4f4 ;
-//     padding-bottom: $spacing-06;
-
-// }
-
-//  .table-container {
-//   width: 100%; 
-// }
-
-.Datagrid {
-  margin-top: 0; /* You can change this value to control the space */
+.c4p--datagrid__toolbar-options{
+  display: none;
 }
 
-.DatagridPagination {
-  margin-top: 0; /* You can change this value to control the space */
+
+
+.filter__banner{
+  background-color: #f4f4f4 ;
+    padding-bottom: $spacing-06;
+
+}
+
+ .table-container {
+  width: 100%; 
+}
+
+.c4p--datagrid-filter-panel.c4p--datagrid-filter-panel__container {
+  height:calc(100vh - 400px);
 }
