@@ -6,7 +6,7 @@ import {
   useInlineEdit,
   useFiltering,  
 } from '@carbon/ibm-products';
-import DatagridPagination from './datagridPagination';
+import DatagridPagination from './DatagridPagination';
 import { pkg } from '@carbon/ibm-products/lib/settings';
  import axios from 'axios';
 import './emppage.scss';
@@ -192,7 +192,7 @@ var getBatchActions = function getBatchActions() {
         {categoryTitle : 'Employee Serial',
       hasAccordion: true,
     filters: [
-      { filterLabel:'EmployeeSerial',
+      { filterLabel:'Employee Serial',
       filter:{
         type: 'number',
         column: 'sid',
@@ -208,17 +208,17 @@ var getBatchActions = function getBatchActions() {
         },
       },
       },
-      {filterLabel:'empn',
+      {filterLabel:'Employee Name',
       filter:{
         type: 'dropdown',
         column: 'Emp Name',
         props: {
           Dropdown: {
-            id: 'marital-status-dropdown',
-            ariaLabel: 'Marital status dropdown',
+            id: 'Employee Name-dropdown',
+            ariaLabel: 'Employee Name dropdown',
             items: ['Alice Johnson', 'John Doe', ],
-            label: 'Marital status',
-            titleText: 'Marital status'
+            label: 'Employee Name',
+            titleText: 'Employee Name'
           },
         },
       },
@@ -282,26 +282,21 @@ var getBatchActions = function getBatchActions() {
       <h1 className="home__heading">Blue Page SyncUp</h1>
  
 
-      {httpError ? (
-        <p>HTTP Error: {httpError.message}</p>
-      ) : (
-        <Datagrid 
-        datagridState={{ ...datagridState }} 
-        onBlur={handleSaveEdits}
-        // paginationComponent={DatagridPagination}
-         />
-      )}
-      {httpError && <p>Error fetching data: {httpError.message}</p>}
+      <div>
+        {httpError ? (
+          <p>HTTP Error: {httpError.message}</p>
+        ) : error ? (
+          <p>Error fetching data: {error}</p>
+        ) : (
+          <Datagrid datagridState={{ ...datagridState }} onBlur={handleSaveEdits}/>
+        )}
+        {error && <p>Error fetching data: {error}</p>}
+      </div>
+
     </div>
   );
 };
 
 export default EmpPage;
-
-
-
-
-
- 
 
 
