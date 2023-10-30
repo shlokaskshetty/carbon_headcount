@@ -106,6 +106,50 @@ Note: The reducing function for all the views is **_count**
   emit([year_j, month_j, year_l, month_l, doc["Work location"], doc["Leader Name"]],1);
 }
 </pre>
+
+7. View Name: dept_locationview
+<pre>
+      function(doc) {
+  var j = new Date(doc["Date of Joining"]);
+  var month_j = j.getMonth() + 1; // 0 - 11
+  var year_j = j.getFullYear();
+  
+  var l = new Date(doc["Date of Leaving"]);
+  var month_l = l.getMonth() + 1; // 0 - 11
+  var year_l = l.getFullYear();
+  emit([year_j,month_j,year_l,month_l,doc["Work location"],doc["Dept Name"]],1);
+}
+</pre>
+
+8. View Name: dept_diversityview
+<pre>
+      function(doc) {
+  var j = new Date(doc["Date of Joining"]);
+  var month_j = j.getMonth() + 1; // 0 - 11
+  var year_j = j.getFullYear();
+  
+  var l = new Date(doc["Date of Leaving"]);
+  var month_l = l.getMonth() + 1; // 0 - 11
+  var year_l = l.getFullYear();
+  emit([year_j,month_j,year_l,month_l,doc["Diversity"],doc["Dept Name"]],1);
+}
+</pre>
+
+9. View Name: dept_emptypeview
+<pre>
+      function(doc) {
+  var j = new Date(doc["Date of Joining"]);
+  var month_j = j.getMonth() + 1; // 0 - 11
+  var year_j = j.getFullYear();
+  
+  var l = new Date(doc["Date of Leaving"]);
+  var month_l = l.getMonth() + 1; // 0 - 11
+  var year_l = l.getFullYear();
+  emit([year_j,month_j,year_l,month_l,doc["Emp Type"],doc["Dept Name"]],1);
+}
+</pre>
+
+
 ## Step 3: Set up the backend server
 -> Add Backend/server.js to the root folder<br>
 -> In the server.js file make the following changes:<br>
