@@ -6,7 +6,7 @@ import {
   useInlineEdit,
   useFiltering,  
 } from '@carbon/ibm-products';
-import DatagridPagination from './DatagridPagination';
+import DatagridPagination from './datagridPagination';
 import { pkg } from '@carbon/ibm-products/lib/settings';
  import axios from 'axios';
 import './emppage.scss';
