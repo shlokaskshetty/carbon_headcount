@@ -3,12 +3,12 @@ import './App.css';
 import './app.scss';
 import React, { Component } from 'react';
 import { Button, Content } from '@carbon/react';
-import CarbonHeader from './components/Header';
+import CarbonHeader from './components/header';
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './content/Dashboard';
-import Home from './content/Home';
-import Login from './content/Login';
-import EmpPage from './content/EmpPage';
+import Dashboard from './content/dashboard';
+import Home from './content/home';
+import Login from './content/login';
+import EmpPage from './content/empPage';
 import '@carbon/ibm-products/css/index.min.css';
 
 pkg.setAllComponents(true);
