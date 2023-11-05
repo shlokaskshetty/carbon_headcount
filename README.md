@@ -163,6 +163,7 @@ In Line 7: Replace database name with your own pre-exisiting database name: cons
       npm install --legacy-peer-deps
       npm install express express-rate-limit
       npm install dotenv
+      npm install web-vitals
       npm install winston  
 </pre>
 
@@ -183,6 +184,7 @@ Replace username, password of CouchDB database with your own, in the format: htt
       npm install
       npm install axios
       npm install @carbon/react
+      npm install @storybook/addon-actions
 </pre>
 
 
