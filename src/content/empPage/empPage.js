@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   Datagrid,
@@ -10,17 +9,16 @@ import DatagridPagination from './datagridPagination';
 import { pkg } from '@carbon/ibm-products/lib/settings';
  import axios from 'axios';
 import './emppage.scss';
-//  import Search from '@carbon/react/lib/components/Search';    
- import {  Button } from 'carbon-components-react';
+  import {  Button } from 'carbon-components-react';
  import { Download, Filter, Add} from '@carbon/icons-react';
  import { DatagridActions } from '@carbon/ibm-products/es/components/Datagrid/utils/DatagridActions';
-// import { DatagridActions } from './DatagridActions';
- import { action } from '@storybook/addon-actions';
+ import Papa from 'papaparse';  
 
+ 
  const defaultHeader = [
   {
     Header: 'EmployeeSerial',
-    accessor: 'sid',
+    accessor: 'EmployeeSerial#',
     filter: 'number',
   },
   {
@@ -107,54 +105,6 @@ import './emppage.scss';
 ];
 
 
-/// getBatchAction ///
-var getBatchActions = function getBatchActions() {
-  return [{
-    label: 'Duplicate',
-    renderIcon: function renderIcon() {
-      return /*#__PURE__*/React.createElement(Add, {
-        size: 16
-      });
-    },
-    onClick: action('Clicked batch action button')
-  }, {
-    label: 'Add',
-    renderIcon: function renderIcon() {
-      return /*#__PURE__*/React.createElement(Add, {
-        size: 16
-      });
-    },
-    onClick: action('Clicked batch action button')
-  }, {
-    label: 'Publish to catalog',
-    renderIcon: function renderIcon() {
-      return /*#__PURE__*/React.createElement(Add, {
-        size: 16
-      });
-    },
-    onClick: action('Clicked batch action button')
-  }, {
-    label: 'Download',
-    renderIcon: function renderIcon() {
-      return /*#__PURE__*/React.createElement(Add, {
-        size: 16
-      });
-    },
-    onClick: action('Clicked batch action button')
-  }, {
-    label: 'Delete',
-    renderIcon: function renderIcon() {
-      return /*#__PURE__*/React.createElement(Add, {
-        size: 16
-      });
-    },
-    onClick: action('Clicked batch action button'),
-    hasDivider: true,
-    kind: 'danger'
-  }];
-};
-
-///export
  export const EmpPage = () => {
 
   var columns = React.useMemo(function () {
@@ -166,9 +116,12 @@ var getBatchActions = function getBatchActions() {
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [error, setError] = useState(null); // General error /////
+  const [error, setError] = useState(null); 
   const [httpError, setHttpError] = useState(null);
  
+
+ 
+
 
 
 //datagridState//
@@ -182,11 +135,11 @@ var getBatchActions = function getBatchActions() {
     onDataUpdate: setData,
     DatagridPagination: DatagridPagination,
     filterProps: {
-      variation: 'panel', // default
-      updateMethod: 'instant', // default
-      primaryActionLabel: 'Apply', // default
-      secondaryActionLabel: 'Cancel', // default
-      panelIconDescription: 'Open filters', // default
+      variation: 'panel',  
+      updateMethod: 'instant',  
+      primaryActionLabel: 'Apply',  
+      secondaryActionLabel: 'Cancel',  
+      panelIconDescription: 'Open filters', 
       closeIconDescription: 'Close Panel',
       sections: [
         {categoryTitle : 'Employee Serial',
@@ -195,7 +148,7 @@ var getBatchActions = function getBatchActions() {
       { filterLabel:'Employee Serial',
       filter:{
         type: 'number',
-        column: 'sid',
+        column: 'EmployeeSerial#',
         props: {
           NumberInput: {
             min: 0,
@@ -203,8 +156,7 @@ var getBatchActions = function getBatchActions() {
             invalidText: 'A valid value is required',
             label: 'EmployeeSerial',
             placeholder: 'Type a EmployeeSerial',
-            // Add any other Carbon NumberInput props here
-          },
+           },
         },
       },
       },
@@ -226,31 +178,22 @@ var getBatchActions = function getBatchActions() {
     ]}
        
       ],
-      shouldClickOutsideToClose: false, // default
-      // filters,
-    },
+      shouldClickOutsideToClose: false,  
+     },
     DatagridActions,
       batchActions: true,
-      toolbarBatchActions: getBatchActions(),
-  }, useInlineEdit, useFiltering);
-  useEffect(() => {
+   }, useInlineEdit, useFiltering);
+   useEffect(() => {
     axios.get('http://localhost:5000/api/getEmployees')
       .then((response) => {
-
-        setData(response.data.map(row=>{
-          const id= parseInt(row['EmployeeSerial#'])
-          const newRow = {...row,sid:id
-          }
-          console.log(newRow)
-          return newRow
-        }));
+        setData(response.data);
       })
       .catch((error) => {
         setHttpError(error);
         console.error('Error fetching data:', error);
       });
   }, []);
-
+  
   const handleFilterEmployees = () => {
     const searchText = document.getElementById('filterInput').value.toLowerCase();
 
@@ -277,10 +220,38 @@ var getBatchActions = function getBatchActions() {
       });
   };
 
+const handleDownloadData = () => {
+  axios
+    .get('http://localhost:5000/api/getEmployees')
+    .then((response) => {
+      const data = response.data;
+
+      //   data to CSV using PapaParse
+      const csvData = Papa.unparse(data);
+
+      //   Blob with the CSV data
+      const blob = new Blob([csvData], { type: 'text/csv' });
+
+      //   download link
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute('download', 'employees.csv');
+
+       document.body.appendChild(link);
+      link.click();
+
+       document.body.removeChild(link);
+    })
+    .catch((error) => {
+      console.error('Error downloading data:', error);
+    });
+};
+
   return (
     <div className="EmpPageWrap">
       <h1 className="home__heading">Blue Page SyncUp</h1>
  
+      
 
       <div>
         {httpError ? (
@@ -293,6 +264,15 @@ var getBatchActions = function getBatchActions() {
         {error && <p>Error fetching data: {error}</p>}
       </div>
 
+<div className="buttonContainer">
+<Button
+    kind="secondary"
+    renderIcon={Download}
+    onClick={handleDownloadData}
+  >
+    Download Data
+  </Button>
+</div>
     </div>
   );
 };
