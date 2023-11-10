@@ -26,12 +26,9 @@
   display: none;
 }
 
-
-
 .filter__banner{
   background-color: #f4f4f4 ;
     padding-bottom: $spacing-06;
-
 }
 
  .table-container {
@@ -40,4 +37,9 @@
 
 .c4p--datagrid-filter-panel.c4p--datagrid-filter-panel__container {
   height:calc(100vh - 400px);
+}
+
+.buttonContainer {
+  text-align: right;
+  
 }
