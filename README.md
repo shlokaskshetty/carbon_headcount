@@ -158,13 +158,13 @@ In Line 7: Replace database name with your own pre-exisiting database name: cons
 
 <pre>
       npm install
-      npm install axios
       npm install express nano body-parser cors
       npm install --legacy-peer-deps
       npm install express express-rate-limit
       npm install dotenv
       npm install web-vitals
       npm install winston  
+      npm install papaparse
 </pre>
 
 -> Making the .env file<br>
